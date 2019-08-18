@@ -1,0 +1,1 @@
+export const CONDOMINIO_KIPER_API = "http://localhost:64287/kipercondominio/api/v1";

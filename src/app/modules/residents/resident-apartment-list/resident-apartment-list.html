@@ -1,0 +1,41 @@
+<div class="row" *ngIf="!isLoading">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <h4>Listado de moradores</h4>      
+      </div>
+      <div class="card-body">
+        <div class=" table-fixed">
+          <div class="table-scroll">
+            <table class="table">
+              <tbody>
+                <tr *ngFor="let resident of residents">
+                  <td>
+                    <h4>{{resident?.name}}</h4>
+                    <small><b>CPF:</b> {{resident?.document}}</small>
+                  </td>
+                  <td>
+                    <small><b>Telefone:</b> {{resident?.phoneNumber}}</small><br>
+                    <small><b>Email:</b> {{resident?.email}}</small>
+                  </td>
+                  <td class="td-actions text-right">
+                    <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'" (click)="deleteResident(resident)"
+                      class="btn btn-danger btn-link btn-sm btn-just-icon">
+                      <i class="material-icons">close</i>
+                    </button>
+                  </td>
+                </tr>
+                <div *ngIf="!residents || residents?.length === 0">
+                  <app-no-data></app-no-data>
+                </div>
+              </tbody>
+            </table>
+          </div>
+        </div>   
+      </div>
+    </div>
+  </div>
+</div>     
+<div *ngIf="isLoading" class="second-card row justify-content-md-center align-items-center">
+  <app-loading-info></app-loading-info>
+</div>

@@ -1,0 +1,22 @@
+.row-hover:hover {
+    cursor: pointer;
+}
+
+.table-scroll {
+    height:100%;
+    overflow:auto;  
+    margin-top:20px;
+  }
+  
+  .table-fixed{  
+    height: 55vh;
+  }
+
+  .text-white{
+    color: white;
+}
+
+.btn-blue {
+  background-color: #226b80 !important;
+  border-color: #226b80 !important;
+}

@@ -1,0 +1,53 @@
+<div class="row" *ngIf="!isLoading">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <h4>Listado de apartamentos</h4>
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input class="text-white" matInput placeholder="procurar por numero, andar ou bloco"
+              [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}">
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="card-body">
+        <div class=" table-fixed">
+          <div class="table-scroll">
+            <table class="table">
+              <tbody>
+                <tr class="row-hover"
+                  *ngFor="let apartment of apartments | grdFilter: {number: searchText, block:searchText, roof:searchText}; let i=index;"
+                  matTooltip="Click para ver detalhes" [matTooltipPosition]="'above'">
+                  <div [routerLink]="['apartments', apartment.id]">
+                    <td>
+                      <h4>N° {{apartment?.number}}</h4>
+                    </td>
+                    <td>
+                      <h5><small>Bloque:</small> {{apartment?.block}}<small>, Andar:</small> {{apartment?.roof}}</h5>
+                    </td>
+                    <td class="text-right">
+                      <h5>{{apartment?.residentsNumber}} residentes</h5>
+                    </td>
+                  </div>
+                  <td class="td-actions text-right">
+                    <button mat-raised-button type="button" matTooltip="Remove" [matTooltipPosition]="'above'"
+                      class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="deleteApartment(apartment)">
+                      <i class="material-icons">close</i>
+                    </button>
+                  </td>
+                </tr>
+                <div
+                  *ngIf="(apartments | grdFilter: {number: searchText, block:searchText, roof:searchText})?.length === 0">
+                  <app-no-data></app-no-data>
+                </div>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="isLoading" class="second-card row justify-content-md-center align-items-center">
+  <app-loading-info></app-loading-info>
+</div>

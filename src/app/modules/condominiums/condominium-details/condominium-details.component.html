@@ -1,0 +1,23 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title">
+          <div class="col-12">
+            <div class="row" *ngIf="!isLoading" >
+              <div class="col-10">
+                <h3>{{condominium?.name}}</h3>
+                <h5>Endereço: {{condominium?.address}}</h5>
+              </div>
+              <div class="col-2 text-center justify-content-center align-self-center">
+                <a class="row-hover" matTooltip="Click para retornar" [matTooltipPosition]="'above'"
+                  (click)="comeBack(condominium)"><i class="material-icons">arrow_back_ios</i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

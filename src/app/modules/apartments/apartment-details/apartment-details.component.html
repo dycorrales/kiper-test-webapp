@@ -1,0 +1,3 @@
+<hr>
+<h4 *ngIf="!isLoading">Apartamento: {{apartment?.number}}, Bloco: {{apartment?.block}}, Andar: {{apartment?.roof}}</h4>
+<app-resident-list [residents]="apartment?.residents" [apartment]="apartment" [isLoading]="isLoading"></app-resident-list>

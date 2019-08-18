@@ -1,0 +1,55 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">location_city</i>
+                        </div>
+                        <p class="card-category">Condomínios</p>
+                        <h3 class="card-title">{{dashboard?.condominiumsNumber || 0}}</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            quantidade de condomínios registrados
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-success card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">home</i>
+                        </div>
+                        <p class="card-category">Apartamentos</p>
+                        <h3 class="card-title">{{dashboard?.apartmentsNumber || 0}}</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            quantidade de apartamentos registrados
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">face</i>
+                        </div>
+                        <p class="card-category">Moradores</p>
+                        <h3 class="card-title">{{dashboard?.residentsNumber || 0}}</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            quantidade de moradores registrados
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-condominium-list [condominiums]="condominiums" [isLoading]="isLoading"></app-condominium-list>
+    </div>
+</div>

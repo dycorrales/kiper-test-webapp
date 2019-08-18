@@ -1,0 +1,98 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header card-header-info">
+            <div class="row">
+              <div class="col-9">
+                <h4>Cadastro de morador</h4>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="residentForm" (ngSubmit)='saveResident()' *ngIf="!isLoading">
+              <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                      <mat-label>selecione o condomínio</mat-label>
+                    <mat-select formControlName="condominiumId" name="condominium" required 
+                      [(value)]="selected" (selectionChange)="loadApartments(selected)">
+                      <mat-option *ngFor="let condominium of condominiums" [value]="condominium.id">
+                        {{condominium.text}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="residentForm.controls['condominiumId'].invalid">condomínio é requerido</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row justify-content-md-center">
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>selecione o apartamento</mat-label>
+                      <mat-select formControlName="apartmentId" name="apartment" required>
+                        <mat-option *ngFor="let apartment of apartments" [value]="apartment.id">
+                          {{apartment.text}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="residentForm.controls['apartmentId'].invalid">apartamento é requerido</mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+              <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="digite o nome" formControlName="name" required>
+                    <mat-error *ngIf="residentForm.controls['name'].invalid">nome é requerido</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput [matDatepicker]="picker" formControlName="birthday"
+                      placeholder="data de nascimento">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="residentForm.controls['birthday'].invalid">data de nascimento é requerida
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="digite o telefone" formControlName="phoneNumber" required>
+                    <mat-error *ngIf="residentForm.controls['phoneNumber'].invalid">telefone é requerido</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="digite o email" formControlName="email" required>
+                    <mat-error *ngIf="residentForm.controls['email'].invalid">{{getEmailErrorMessage()}}}</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="digite o cpf" formControlName="documentNumber" required>
+                    <mat-error *ngIf="residentForm.controls['documentNumber'].invalid">cpf é requerido</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <button mat-raised-button type="submit" class="btn btn-success pull-right"
+              [disabled]="!isValidForm()">Salvar</button>
+              <button mat-raised-button type="button" class="btn btn-warning pull-right" [routerLink]="['/residents']">Cancelar</button>
+              <div class="clearfix"></div>
+            </form>            
+            <div *ngIf="isLoading" class="second-card row justify-content-md-center align-items-center">
+                <app-loading-info></app-loading-info>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

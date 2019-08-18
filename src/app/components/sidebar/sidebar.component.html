@@ -1,0 +1,13 @@
+<div class="logo text-center">
+    <h3 class="text-info">Sm@rtCondo</h3>
+</div>
+<div class="sidebar-wrapper">  
+    <ul class="nav">
+        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+            <a class="nav-link" [routerLink]="[menuItem.path]">
+                <i class="material-icons">{{menuItem.icon}}</i>
+                <p>{{menuItem.title}}</p>
+            </a>
+        </li>
+    </ul>
+</div>

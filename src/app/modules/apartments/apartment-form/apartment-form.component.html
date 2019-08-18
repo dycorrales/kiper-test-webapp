@@ -1,0 +1,75 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header card-header-info">
+            <div class="row">
+              <div class="col-9">
+                <h4>Cadastro de apartamento</h4>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="apartmentForm" (ngSubmit)='saveApartment()' *ngIf="!isLoading">
+              <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>selecione o condomínio</mat-label>
+                    <mat-select formControlName="condominiumId" name="condominium" required>
+                      <mat-option *ngFor="let condominium of condominiums" [value]="condominium.id">
+                        {{condominium.text}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="apartmentForm.controls['condominiumId'].invalid">condomínio é requerido
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="digite o bloco" formControlName="block" required>
+                    <mat-error *ngIf="apartmentForm.controls['block'].invalid">bloco é requerido</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="digite o andar" formControlName="roof" required type="number">
+                    <mat-error *ngIf="apartmentForm.controls['roof'].invalid">andar é requerido</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="digite o numero" formControlName="number" required type="number">
+                    <mat-error *ngIf="apartmentForm.controls['number'].invalid">numero é requerido</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row" *ngIf="!id">
+                <div class="col-6">
+                  <app-resident-apartment-list #residentList (residentsResult)=insertResident($event)>
+                    </app-resident-apartment-list>
+                </div>
+                <div class="col-6">
+                  <app-resident-apartment-form (resident)="residentList.insertResident($event)"></app-resident-apartment-form>
+                </div>
+              </div>
+              <button mat-raised-button type="submit" class="btn btn-success pull-right"
+                [disabled]="!isValidForm()">Salvar</button>
+              <button mat-raised-button type="button" class="btn btn-warning pull-right"
+                [routerLink]="['/apartments']">Cancelar</button>
+              <div class="clearfix"></div>
+            </form>
+            <div *ngIf="isLoading" class="second-card row justify-content-md-center align-items-center">
+              <app-loading-info></app-loading-info>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

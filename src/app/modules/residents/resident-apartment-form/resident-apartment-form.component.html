@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header card-header-info">
+        <div class="row">
+          <div class="col-9">
+            <h4>Novo morador</h4>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="residentForm">
+          <div class="row justify-content-md-center">
+            <div class="col-md-6">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="digite o nome" formControlName="name" required>
+                <mat-error *ngIf="residentForm.controls['name'].invalid">nome é requerido</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row justify-content-md-center">
+            <div class="col-md-6">
+              <mat-form-field class="example-full-width">
+                <input matInput [matDatepicker]="picker" formControlName="birthday" placeholder="data de nascimento">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="residentForm.controls['birthday'].invalid">data de nascimento é requerida
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row justify-content-md-center">
+            <div class="col-md-6">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="digite o telefone" formControlName="phoneNumber" required>
+                <mat-error *ngIf="residentForm.controls['phoneNumber'].invalid">telefone é requerido</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row justify-content-md-center">
+            <div class="col-md-6">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="digite o email" formControlName="email" required>
+                <mat-error *ngIf="residentForm.controls['email'].invalid">{{getEmailErrorMessage()}}}</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row justify-content-md-center">
+            <div class="col-md-6">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="digite o cpf" formControlName="documentNumber" required>
+                <mat-error *ngIf="residentForm.controls['documentNumber'].invalid">cpf é requerido</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <button mat-raised-button type="button" class="btn btn-success pull-right" (click)="insertResident()"
+            [disabled]="!isValidForm()">Inserir</button>
+          <div class="clearfix"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

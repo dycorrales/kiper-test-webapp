@@ -1,0 +1,78 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header card-header-info">
+            <div class="row">
+              <div class="col-9">
+                <h4>Listado de moradores</h4>
+                <form class="example-form">
+                  <mat-form-field class="example-full-width">
+                    <input class="text-white" matInput
+                      placeholder="procurar por nome, telefone, email, cpf, endereço, apartamento ou condomínio"
+                      [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}">
+                  </mat-form-field>
+                </form>
+              </div>
+              <div class="col-3 text-right">
+                <button mat-raised-button type="button" class="btn btn-sm btn-primary btn-blue" (click)="newResident()">
+                  <i class="material-icons">assignment</i>
+                  Novo morador
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class=" table-fixed" *ngIf="!isLoading">
+              <div class="table-scroll">
+                <table class="table">
+                  <tbody>
+                    <tr 
+                      *ngFor="let resident of residents | grdFilter: {name: searchText, phoneNumber:searchText, email:searchText, document:searchText, address:searchText, condominiumName:searchText, apartmentNumber:searchText}; let i=index;">
+                      <td>
+                        <h4>{{resident?.name}}</h4>
+                        <small><b>CPF:</b> {{resident?.formatedDocument}}</small>
+                      </td>
+                      <td class="text-truncate" style="max-width: 250px;">
+                        <small><b>Condomínio:</b> {{resident?.condominiumName}}, <b>Apto:</b>
+                          {{resident?.apartmentNumber}}, <b>Bloco:</b> {{resident?.apartmentBlock}}, <b>Andar:
+                            {{resident?.apartmentRoof}}</b></small><br>
+                        <small><b>Endereço:</b> {{resident?.condominiumAddress}}</small>
+                      </td>
+                      <td>
+                        <small><b>Telefone:</b> {{resident?.formatedPhoneNumber}}</small><br>
+                        <small><b>Email:</b> {{resident?.email}}</small>
+                      </td>
+                      <td class="text-right text-truncate" style="max-width: 145px;">
+                        <small><b>Aniversário:</b> {{resident?.birthday | date:'MMMM dd, yyyy'}}</small><br>
+                        <small>{{resident?.age}} anos</small>
+                      </td>
+                      <td class="td-actions text-right">
+                        <button mat-raised-button type="button" matTooltip="Editar residente" [matTooltipPosition]="'above'"
+                          class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="updateResident(resident)">
+                          <i class="material-icons">edit</i>
+                        </button>
+                        <button mat-raised-button type="button" matTooltip="Apagar residente" [matTooltipPosition]="'above'"
+                          (click)="deleteResident(resident)" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                          <i class="material-icons">close</i>
+                        </button>
+                      </td>
+                    </tr>
+                    <div
+                      *ngIf="(residents | grdFilter: {name: searchText, phoneNumber:searchText, email:searchText, document:searchText, address:searchText, condominiumName:searchText, apartmentNumber:searchText})?.length === 0">
+                      <app-no-data></app-no-data>
+                    </div>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div *ngIf="isLoading" class="second-card row justify-content-md-center align-items-center">
+            <app-loading-info></app-loading-info>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
