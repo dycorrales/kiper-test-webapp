@@ -44,7 +44,7 @@
     "hammerjs": "2.0.8",
     "jquery": "3.4.1",
     "jwt-decode": "^2.2.0",
-    "moment": "2.24.0",
+    "moment": "2.29.2",
     "ngx-nested-data-table": "0.0.8",
     "ngx-sweetalert2": "^0.2.7",
     "ngx-sweetalert2-repository": "github:toverux/ngx-sweetalert2",
